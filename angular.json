@@ -1,0 +1,154 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "meriturva": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "i18n": {
+        "locales": {
+          "it": {
+            "translation": "projects/meriturva/src/i18n/messages.it.xlf",
+            "subPath": ""
+          }
+        }
+      },
+      "root": "projects/meriturva",
+      "sourceRoot": "projects/meriturva/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": {
+              "base": "dist/meriturva"
+            },
+            "index": "projects/meriturva/src/index.html",
+            "polyfills": [
+              "zone.js",
+              "@angular/localize/init"
+            ],
+            "tsConfig": "projects/meriturva/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [],
+            "styles": [],
+            "scripts": [],
+            "serviceWorker": "ngsw-config.json",
+            "browser": "projects/meriturva/src/main.ts"
+          },
+          "configurations": {
+            "production": {
+              "sourceMap": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumError": "3mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all",
+              "i18nMissingTranslation": "warning",
+              "localize": [
+                "it"
+              ]
+            },
+            "staging": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumError": "3mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all",
+              "i18nMissingTranslation": "warning",
+              "localize": [
+                "it"
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "meriturva:build:production"
+            },
+            "development": {
+              "proxyConfig": "projects/meriturva/proxy.conf.json",
+              "buildTarget": "meriturva:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "meriturva:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/meriturva/src/test.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing",
+              "@angular/localize/init"
+            ],
+            "tsConfig": "projects/meriturva/tsconfig.spec.json",
+            "karmaConfig": "projects/meriturva/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/meriturva/src/favicon.ico",
+              "projects/meriturva/src/assets"
+            ],
+            "styles": [
+              "projects/meriturva/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/meriturva/**/*.ts",
+              "projects/meriturva/**/*.html"
+            ],
+            "eslintConfig": "projects/meriturva/eslint.config.js"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "schematicCollections": [
+      "angular-eslint"
+    ],
+    "analytics": false
+  }
+}
