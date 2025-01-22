@@ -39,7 +39,11 @@
             "tsConfig": "projects/meriturva/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [],
-            "styles": [],
+            "styles": [
+              {
+                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
+              }
+            ],
             "scripts": [],
             "serviceWorker": "ngsw-config.json",
             "browser": "projects/meriturva/src/main.ts"
@@ -127,6 +131,9 @@
               "projects/meriturva/src/assets"
             ],
             "styles": [
+              {
+                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
+              },
               "projects/meriturva/src/styles.scss"
             ],
             "scripts": []
